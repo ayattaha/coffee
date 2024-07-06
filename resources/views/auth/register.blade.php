@@ -7,23 +7,23 @@
             @csrf  
             <h1>Create Account</h1>
             <div class="mb-3">
-                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Fullname" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                @error('name')
+                <input id="fullname" type="text" class="form-control @error('fullname') is-invalid @enderror" placeholder="Full name" name="fullname" value="{{ old('fullname') }}" required autocomplete="fullname" autofocus>
+                @error('fullname')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
             </div>
-           <!-- 
+             
             <div class="mb-3">
-                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" placeholder="Username" name="username" value="{{ old('username') }}" required>
+                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" placeholder="User name" name="username" value="{{ old('username') }}" required>
                 @error('username')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
             </div>
-            -->
+          
             <div class="mb-3">
                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" name="email" value="{{ old('email') }}" required autocomplete="email">
                 @error('email')

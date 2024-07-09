@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+
 
 class HomeController extends Controller
 {
@@ -24,8 +26,9 @@ class HomeController extends Controller
     public function index()
     {
           $title="Admin Page";
-        return view('admin.users',compact('title'));
         
+        $users=User::get();
+        return view('admin.users',compact('title','users'));
         //return view('home');
     }
     

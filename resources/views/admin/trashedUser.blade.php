@@ -56,33 +56,32 @@
                                                     <th>UserName</th>
                                                     <th>Email</th>
                                                     <th>Active</th>
-                                                    <th>Edit</th>
+                                                    <th>Restore</th>
                                                     <th>Delete</th>
                                                 </tr>
                                                 </thead>
                                                 
                                                 
                                                 <tbody>
-                                                @foreach ($users as $user)
+                                                @foreach ($trash as $user)
                                                 <tr>
                                                     <td>{{ $user->created_at->format('Y-m-d H:i:s') }}</td>
                                                     <td>{{ $user->fullname }}</td>
                                                     <td>{{ $user->username }}</td>
                                                     <td>{{ $user->email }}</td>
                                                     <td>{{ $user->active ? 'Active' : 'Inactive' }}</td>
-                                                    <td><a href="{{route('editUser', $user->id)}}"><img src="{{ asset('assets/admin/images/edit.png') }}" alt="Edit"></a></td>
-                                                    <td> 
-                                                    <form action="{{ route('deleteUser') }}" method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <input type="hidden" name="id" value="{{ $user->id }}">
-                                                    <button type="submit" style="background: none; border: none; padding: 0; margin: 0;">
+                                                    <td><a href="{{route('restorUser', $user->id)}}"> Restore </a></td>
+                                                     <td>
+                                                        <form action="{{ route('forceDeleteUser') }}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <input type="hidden" name="id" value="{{ $user->id }}">
+                                                        <button type="submit" style="background: none; border: none; padding: 0; margin: 0;">
                                                         <img src="{{ asset('assets/admin/images/delete.png') }}" alt="Delete">
                                                     </button>
-                                                    </form>
-                                                    </td>
-                                                   
-                                                </tr>
+                                                        </form>
+                                                        </td>
+                                                    </tr>
                                                 @endforeach
                                                 </tbody>
                                             </table>

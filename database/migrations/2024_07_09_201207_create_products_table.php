@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->decimal('price', 8, 2); // 8 digits in total, 2 after the decimal point
+            $table->string('image');
+            $table->text('description');
+            $table->boolean('special_item')->default(false);
+            $table->boolean('published')->default(false);
+            $table->foreignId('category_id')->constrained('categories');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

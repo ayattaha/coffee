@@ -58,18 +58,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($Products as $product)
+                                    @foreach ($trash as $product)
                                     <tr>
                                         <td>{{ $product->name }}</td>
                                         <td>{{ $product->price }}</td>
                                         <td style="width: 100px;"><img src="{{ asset('assets/img/beveragesImg/'.$product->image) }}" alt="Product Image" class="img-thumbnail"></td> <!-- Adjusted width for image -->
-                                        <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis;">{{ $product->description }}</td>
+                                        <td>{{ $product->description }}</td>
                                         <td>{{ $product->special_item ? 'special' : 'Not special' }}</td>
                                         <td>{{ $product->category->name }}</td>
                                         <td>{{ $product->published ? 'published' : 'Not published' }}</td>
-                                        <td><a href="{{ route('editBeverages', $product->id) }}"><img src="{{ asset('assets/admin/images/edit.png') }}" alt="Edit"></a></td>
+                                        <td><a href="{{route('restorBeverage', $product->id)}}"> Restore </a></td>
                                         <td>
-                                            <form action="{{ route('deleteBeverage') }}" method="post">
+                                            <form action="{{ route('forceDeleteBeverage') }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <input type="hidden" name="id" value="{{ $product->id }}">

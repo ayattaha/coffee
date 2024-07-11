@@ -21,23 +21,13 @@ class AdminController extends Controller
         return view('admin.addUser',compact('title'));
     }
 
-    public function addBeverages()
-    {
-        $title="add Beverages";
-        return view('admin.addBeverages',compact('title'));
-    }
-
+    
     public function addCategory()
     {
         $title="add Category";
         return view('admin.addCategory',compact('title'));
     }
 
-    public function beverages()
-    {
-        $title="beverages";
-        return view('admin.beverages',compact('title'));
-    }
 
     public function categories()
     {

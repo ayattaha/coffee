@@ -6,6 +6,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BeverageController;
+use App\Http\Controllers\CategoryController;
+
 
 // route for wave cafe pages
 Route::get('/',[CoffeeController :: class,'index'])->name('index');
@@ -51,16 +53,30 @@ Route::prefix('/admin')->middleware('verified')->group(function () {
      Route::get('/restorBeverage/{id}',[BeverageController::class,'restore'])->name('restorBeverage');
      Route::delete('/forceDeleteBeverage',[BeverageController::class,'forceDelete'])->name('forceDeleteBeverage');
 
-     // Rout to Add Beverage
+     // Routes to Add Beverage
      Route::get('/addBeverages',[BeverageController :: class,'addBeverages'])->name('addBeverages');
      Route::post('/insertBeverage',[BeverageController :: class,'store'])->name('insertBeverage');
     
-    
-    Route::get('/addCategory',[AdminController :: class,'addCategory'])->name('addCategory');
-    Route::get('/categories',[AdminController :: class,'categories'])->name('categories');
-    // Route::get('/editCategories',[AdminController :: class,'editCategories'])->name('editCategories');
+    // Routes for Categories
+    // first Roues to show categories list
+    Route::get('/categories',[CategoryController :: class,'categories'])->name('categories');
    
-    Route::get('/messages',[AdminController :: class,'messages'])->name('messages');
+    
+    // Route to update data of category table
+    Route::get('/editCategories/{id}',[CategoryController :: class,'edit'])->name('editCategories');
+    Route::put('/updateCategories/{id}',[CategoryController::class,'update'])->name('updateCategories');
+
+    // Route to force delete category only if it has no data in the beverages table.
+     Route::delete('/forceDeleteCategory/{id}',[CategoryController::class,'destroy'])->name('forceDeleteCategory');
+
+    // Routes to Add category
+     Route::get('/addCategory',[AdminController :: class,'addCategory'])->name('addCategory');
+     Route::post('/insertCategory',[CategoryController :: class,'store'])->name('insertCategory');
+    
+ 
+ 
+ 
+     Route::get('/messages',[AdminController :: class,'messages'])->name('messages');
     // Route::get('/showMessages',[AdminController :: class,'showMessages'])->name('showMessages');
     
 });

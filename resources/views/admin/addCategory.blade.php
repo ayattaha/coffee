@@ -46,13 +46,16 @@
 								</div>
 								<div class="x_content">
 									<br />
-									<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-
+									<form id="demo-form2"action="{{ route('insertCategory') }}" method="POST" data-parsley-validate class="form-horizontal form-label-left">
+									@csrf
 										<div class="item form-group">
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="add-category">Add Category <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="text" id="add-category" required="required" class="form-control ">
+												<input type="text" id="add-category" name="name" required="required" class="form-control ">
+												@error('name')
+												<p class="text-danger">{{ $message }}</p>
+												@enderror
 											</div>
 										</div>
 										

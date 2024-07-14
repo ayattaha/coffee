@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\User;
+use App\Models\ContactMessage;
 
 class UserController extends Controller
 {
@@ -71,7 +72,8 @@ class UserController extends Controller
     {
         $title='edite User';
         $user = User::findOrFail($id);
-        return view('admin.editUser',compact('user','title'));
+        $unreadMessages = ContactMessage::where('is_read', false)->orderBy('created_at', 'desc')->get();
+        return view('admin.editUser',compact('user','title','unreadMessages'));
     }
 
     /**
@@ -121,7 +123,8 @@ class UserController extends Controller
     public function showDeleted()
      {       $title='Trashed User';
         $trash = User::onlyTrashed()->get();
-        return view('admin.trashedUser', compact('trash','title'));
+        $unreadMessages = ContactMessage::where('is_read', false)->orderBy('created_at', 'desc')->get();
+        return view('admin.trashedUser', compact('trash','title','unreadMessages'));
      }
 
     public function restore(string $id)

@@ -53,7 +53,7 @@
                                         <th>Special</th>
                                         <th>Category</th>
                                         <th>Published</th>
-                                        <th>Edit</th>
+                                        <th>Restore</th>
                                         <th>Delete</th>
                                     </tr>
                                 </thead>

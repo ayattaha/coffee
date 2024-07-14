@@ -26,10 +26,6 @@ class CoffeeController extends Controller
         return view('specialItem',compact('title'));
     }
 
-    public function contact()
-    {
-        $title="Contact";
-        return view('contact',compact('title'));
-    }
+    
     
 }

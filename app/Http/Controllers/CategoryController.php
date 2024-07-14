@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\ContactMessage;
 
 class CategoryController extends Controller
 {
@@ -15,7 +16,8 @@ class CategoryController extends Controller
     {
         $title="categories";
         $categories=Category::get();
-        return view('admin.categories',compact('title','categories'));
+        $unreadMessages = ContactMessage::where('is_read', false)->orderBy('created_at', 'desc')->get();
+        return view('admin.categories',compact('title','categories','unreadMessages'));
     }
 
     /**
@@ -25,7 +27,8 @@ class CategoryController extends Controller
     {
         $title='Edite Categories';
         $category = Category::findOrFail($id);
-        return view('admin.editCategories',compact('category','title'));
+        $unreadMessages = ContactMessage::where('is_read', false)->orderBy('created_at', 'desc')->get();
+        return view('admin.editCategories',compact('category','title','unreadMessages'));
     }
 
 

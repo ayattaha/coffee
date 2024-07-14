@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-
+use App\Models\ContactMessage;
 
 class HomeController extends Controller
 {
@@ -28,7 +28,8 @@ class HomeController extends Controller
           $title="Admin Page";
         
         $users=User::get();
-        return view('admin.users',compact('title','users'));
+        $unreadMessages = ContactMessage::where('is_read', false)->orderBy('created_at', 'desc')->get();
+        return view('admin.users',compact('title','users','unreadMessages'));
         //return view('home');
     }
     

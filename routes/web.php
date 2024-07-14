@@ -7,14 +7,16 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BeverageController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
 
 
 // route for wave cafe pages
 Route::get('/',[CoffeeController :: class,'index'])->name('index');
 Route::get('aboutUs',[CoffeeController :: class,'aboutUs'])->name('aboutUs');
 Route::get('specialItem',[CoffeeController :: class,'specialItem'])->name('specialItem');
-Route::get('contact',[CoffeeController :: class,'contact'])->name('contact');
 
+Route::get('contact',[ContactController :: class,'contact'])->name('contact');
+Route::post('/sentmail', [ContactController::class, 'submit'])->name('contact.submit');
 // route for admin 
 
 
@@ -75,10 +77,12 @@ Route::prefix('/admin')->middleware('verified')->group(function () {
     
  
  
- 
-     Route::get('/messages',[AdminController :: class,'messages'])->name('messages');
-    // Route::get('/showMessages',[AdminController :: class,'showMessages'])->name('showMessages');
-    
+    // Routes to clients message
+     Route::get('/messages',[ContactController :: class,'messages'])->name('messages');
+     Route::get('/showMessage/{id}',[ContactController :: class,'showMessage'])->name('showMessage');
+     Route::delete('/forceDeleteMessage/{id}',[ContactController::class,'forceDelete'])->name('forceDeleteMessage');
+     Route::get('/notifications', [ContactController::class, 'notifications'])->name('notifications');
+
 });
 
 

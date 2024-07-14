@@ -58,25 +58,23 @@
                         </tr>
                       </thead>
                       <tbody>
+                      @foreach($messages as $message)
                         <tr>
-                          <td>First Name and Last Name</td>
-                          <td>mail@example.com</td>
-                          <td><img src="./images/edit.png" alt="Edit"></td>
-                          <td><img src="./images/delete.png" alt="Delete"></td>
+                          <td>{{ $message->name }}</td>
+                          <td>{{ $message->email }}</td>
+                          <td><a href="{{route('showMessage', $message->id)}}">Show</a></td>
+                          <td>
+                          <form id="deleteForm{{ $message->id }}" action="{{ route('forceDeleteMessage', $message->id) }}" method="POST" style="display:inline;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" style="background: none; border: none; padding: 0; margin: 0;">
+                                                                <img src="{{ asset('assets/admin/images/delete.png') }}" alt="Delete">
+                                                            </button>
+                                                        </form>
+                          </td>
                         </tr>
-                        <tr>
-                          <td>First Name and Last Name</td>
-                          <td>mail@example.com</td>
-                          <td><img src="./images/edit.png" alt="Edit"></td>
-                          <td><img src="./images/delete.png" alt="Delete"></td>
-                        </tr>
-                        <tr>
-                          <td>First Name and Last Name</td>
-                          <td>mail@example.com</td>
-                          <td><img src="./images/edit.png" alt="Edit"></td>
-                          <td><img src="./images/delete.png" alt="Delete"></td>
-                        </tr>
-                        
+                        @endforeach
+                
                       </tbody>
                     </table>
                   </div>

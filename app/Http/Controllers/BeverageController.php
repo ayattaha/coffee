@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Traits\UploadFile;
+use App\Models\ContactMessage;
 
 class BeverageController extends Controller
 {
@@ -17,7 +18,8 @@ class BeverageController extends Controller
     {
         $title="beverages";
         $Products=Product::get();
-        return view('admin.beverages',compact('title','Products'));
+        $unreadMessages = ContactMessage::where('is_read', false)->orderBy('created_at', 'desc')->get();
+        return view('admin.beverages',compact('title','Products','unreadMessages'));
     }
 /**
      * Show the form for editing the specified resource.
@@ -27,7 +29,8 @@ class BeverageController extends Controller
         $title='Edite Beverages';
         $product = Product::findOrFail($id);
         $categories = Category::all();
-        return view('admin.editBeverages',compact('product','title','categories'));
+        $unreadMessages = ContactMessage::where('is_read', false)->orderBy('created_at', 'desc')->get();
+        return view('admin.editBeverages',compact('product','title','categories','unreadMessages'));
    
     }
  //error Mesage 
@@ -87,7 +90,8 @@ class BeverageController extends Controller
     {
         $title="add Beverages";
         $categories = Category::all();
-        return view('admin.addBeverages',compact('title','categories'));
+        $unreadMessages = ContactMessage::where('is_read', false)->orderBy('created_at', 'desc')->get();
+        return view('admin.addBeverages',compact('title','categories','unreadMessages'));
     }
 
     /**
@@ -147,7 +151,8 @@ class BeverageController extends Controller
     public function showDeleted()
      {       $title='Trashed User';
         $trash = Product::onlyTrashed()->get();
-        return view('admin.trashedBeverage', compact('trash','title'));
+        $unreadMessages = ContactMessage::where('is_read', false)->orderBy('created_at', 'desc')->get();
+        return view('admin.trashedBeverage', compact('trash','title','unreadMessages'));
      }
 
     public function restore(string $id)

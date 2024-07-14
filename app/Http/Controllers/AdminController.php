@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ContactMessage;
 
 class AdminController extends Controller
 {
@@ -12,50 +13,46 @@ class AdminController extends Controller
     public function index()
     {
         $title="Admin Page";
-        return view('admin.users',compact('title'));
+        $unreadMessages = ContactMessage::where('is_read', false)->orderBy('created_at', 'desc')->get();
+        return view('admin.users',compact('title','unreadMessages'));
     }
 
     public function adduser()
     {
         $title="add user";
-        return view('admin.addUser',compact('title'));
+        $unreadMessages = ContactMessage::where('is_read', false)->orderBy('created_at', 'desc')->get();
+        return view('admin.addUser',compact('title','unreadMessages'));
     }
 
     
     public function addCategory()
     {
         $title="add Category";
-        return view('admin.addCategory',compact('title'));
+        $unreadMessages = ContactMessage::where('is_read', false)->orderBy('created_at', 'desc')->get();
+        return view('admin.addCategory',compact('title','unreadMessages'));
+        
     }
 
     public function editBeverages()
     {
         $title="editBeverages";
-        return view('admin.editBeverages',compact('title'));
+        $unreadMessages = ContactMessage::where('is_read', false)->orderBy('created_at', 'desc')->get();
+        return view('admin.editBeverages',compact('title','unreadMessages'));
     }
 
     public function editCategories()
     {
         $title="editCategories";
-        return view('admin.editCategories',compact('title'));
+        $unreadMessages = ContactMessage::where('is_read', false)->orderBy('created_at', 'desc')->get();
+        return view('admin.editCategories',compact('title','unreadMessages'));
     }
 
     public function editUser()
     {
         $title="editUser";
-        return view('admin.editUser',compact('title'));
+        $unreadMessages = ContactMessage::where('is_read', false)->orderBy('created_at', 'desc')->get();
+        return view('admin.editUser',compact('title','unreadMessages'));
     }
 
-    public function messages()
-    {
-        $title="messages";
-        return view('admin.messages',compact('title'));
-    }
-
-    public function showMessages()
-    {
-        $title="showMessages";
-        return view('admin.showMessages',compact('title'));
-    }
 
     }

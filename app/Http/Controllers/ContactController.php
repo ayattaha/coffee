@@ -13,11 +13,12 @@ class ContactController extends Controller
     {
         $message = ContactMessage::findOrFail($id);
         $title="show Message";
+        $unreadMessages = ContactMessage::where('is_read', false)->orderBy('created_at', 'desc')->get();
         // Mark the message as read
         if (!$message->is_read) {
             $message->update(['is_read' => true]);
         }
-        return view('admin.showMessages',compact('title','message'));
+        return view('admin.showMessages',compact('title','message','unreadMessages'));
     }
     
     public function messages()

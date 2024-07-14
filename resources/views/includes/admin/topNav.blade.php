@@ -28,7 +28,7 @@
     <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
         @foreach($unreadMessages as $message)
             <li class="nav-item">
-                <a class="dropdown-item" href="{{ route('messages', $message->id) }}">
+                <a class="dropdown-item" href="{{ route('showMessage', $message->id) }}">
                     <span class="image"><img src="{{ asset('assets/admin/images/img.jpg') }}" alt="Profile Image" /></span>
                     <span>
                         <span>{{ $message->name }}</span>

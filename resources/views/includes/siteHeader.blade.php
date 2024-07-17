@@ -1,10 +1,4 @@
-<div class="tm-left">
-        <div class="tm-left-inner">
-          <div class="tm-site-header">
-            <i class="fas fa-coffee fa-3x tm-site-logo"></i>
-            <h1 class="tm-site-name">Wave Cafe</h1>
-          </div>
-          <nav class="tm-site-nav">
+
             <ul class="tm-site-nav-ul">
               <li class="tm-page-nav-item {{request()->is('index') ? 'active' : '' }}">
                 <a href="{{route('index')}}" class="tm-page-link active">
@@ -31,7 +25,4 @@
                 </a>
               </li>
             </ul>
-          </nav>
-        </div>        
-      </div>
-      
+          

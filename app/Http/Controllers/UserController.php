@@ -31,7 +31,7 @@ class UserController extends Controller
         $messages=$this->errMsg();
         $data=$request->validate([
             'fullname' => 'required|string|max:255',
-            'username' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users,username',
             'email' => 'required|string|email|max:255|unique:users,email',
             'password' => 'required|string|min:8',
             'active' => 'boolean',
@@ -53,6 +53,7 @@ class UserController extends Controller
             'username.required' => 'Username is required.',
             'username.string' => 'Username must be a string.',
             'username.max' => 'Username may not be greater than 255 characters.',
+             'username.unique' =>'User name is already taken.',
             'email.required' => 'Email is required.',
             'email.string' => 'Email must be a string.',
             'email.email' => 'Invalid email format.',

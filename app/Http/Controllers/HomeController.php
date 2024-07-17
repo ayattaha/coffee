@@ -25,8 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-          $title="Admin Page";
-        
+        $title="Admin Page";
         $users=User::get();
         $unreadMessages = ContactMessage::where('is_read', false)->orderBy('created_at', 'desc')->get();
         return view('admin.users',compact('title','users','unreadMessages'));

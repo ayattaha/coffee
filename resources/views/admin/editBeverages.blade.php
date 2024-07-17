@@ -74,7 +74,13 @@
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="image">Image <span class="required">*</span>
                                 </label>
-                                <div class="col-md-6 col-sm-6 ">
+                                <div class="col-md-6 col-sm-6">
+                                    <!-- Display the current image -->
+                                    <label for="current_image">Current Image:</label>
+                                    <img src="{{ asset('assets/img/beveragesImg/' . $product->image) }}" alt="Product Image" style="max-width: 200px; display: block; margin-bottom: 10px;">
+
+                                    <!-- File input to change the image -->
+                                    <label for="image">Change Image:</label>
                                     <input type="file" id="image" name="image" class="form-control">
                                     @error('image')
                                         <span class="text-danger">{{ $message }}</span>

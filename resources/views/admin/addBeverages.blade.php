@@ -73,7 +73,7 @@
                                 <label for="price" class="col-form-label col-md-3 col-sm-3 label-align">Price
                                     <span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input id="price" name="price" class="form-control" type="number"
+                                    <input id="price" name="price" class="form-control" type="number" step="0.01"
                                         required="required">
                                     @error('price')
                                     <p class="text-danger">{{ $message }}</p>

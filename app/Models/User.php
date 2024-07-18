@@ -54,7 +54,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $attributes = [
-        'active' => 0, // Setting default value to 0
+        'active' => 1, // Setting default value to 1
     ];
 
 }

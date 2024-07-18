@@ -17,9 +17,9 @@ Route::get('specialItem',[CoffeeController :: class,'specialItem'])->name('speci
 
 Route::get('contact',[ContactController :: class,'contact'])->name('contact');
 Route::post('/sentmail', [ContactController::class, 'submit'])->name('contact.submit');
+
+
 // route for admin 
-
-
 Auth::routes(['verify'=>true]);
 
 Route::prefix('/admin')->middleware('verified')->group(function () {
@@ -90,6 +90,6 @@ Route::prefix('/admin')->middleware('verified')->group(function () {
 
 // Route::get('admin/login', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // 
-Route::get('test', function () {
-    return view('auth.register');
-});
+// Route::get('test', function () {
+//     return view('auth.register');
+// });
